@@ -22,27 +22,48 @@ namespace FlightsAPI_Simple.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Flight> GetAllFlightById(int id)
+        public ActionResult<Flight> GetFlightById(int id)
         {
-            return Ok(_flightService.GetFlightById(id));
+            var result = _flightService.GetFlightById(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult<Flight> CreateFlight(Flight flight) 
+        public ActionResult<Flight> CreateFlight(Flight flight)
         {
             return Ok(_flightService.CreateFlight(flight));
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Flight> UpdateFlight(int id, Flight updatedFlight) 
+        public ActionResult<Flight> UpdateFlight(int id, Flight updatedFlight)
         {
-             return Ok(_flightService.UpdateFlight(id, updatedFlight));    
+            var result = _flightService.UpdateFlight(id, updatedFlight);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<string> DeleteFlight (int id) 
+        public ActionResult<string> DeleteFlight(int id)
         {
-             return Ok(_flightService.DeleteFlight(id));
+            var result = _flightService.DeleteFlight(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }

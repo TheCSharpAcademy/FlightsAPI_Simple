@@ -14,7 +14,7 @@ namespace FlightsAPI_Simple.Services
 
         public Flight CreateFlight(Flight flight)
         {
-            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<Flight> savedFlight = _dbContext.Flights.Add(flight);
+            var savedFlight = _dbContext.Flights.Add(flight);
 
             _dbContext.SaveChanges();
 
@@ -41,7 +41,13 @@ namespace FlightsAPI_Simple.Services
 
         public Flight? GetFlightById(int id)
         {
-            return _dbContext.Flights.Find(id);
+            var flight = _dbContext.Flights.Find(id);
+
+             if (flight is null) {
+                return null;
+            }
+
+            return flight;
         }
 
         public Flight UpdateFlight(int id, Flight updatedFlight)
