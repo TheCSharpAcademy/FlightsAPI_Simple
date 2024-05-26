@@ -14,14 +14,14 @@ namespace FlightsAPI_Simple.Services
 
         public Flight CreateFlight(Flight flight)
         {
-            var savedFlight = _dbContext.Flights.Add(flight);
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<Flight> savedFlight = _dbContext.Flights.Add(flight);
 
             _dbContext.SaveChanges();
 
             return savedFlight.Entity;
         }
 
-        public string? DeleteFlights(int id)
+        public string? DeleteFlight(int id)
         {
             Flight? savedFlight = _dbContext.Flights.Find(id);
 

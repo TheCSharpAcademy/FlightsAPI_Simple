@@ -8,6 +8,6 @@ namespace FlightsAPI_Simple.Services
         public Flight? GetFlightById(int id);
         public Flight CreateFlight(Flight flight);
         public Flight UpdateFlight(int id, Flight updatedFlight);
-        public string? DeleteFlights(int id);
+        public string? DeleteFlight(int id);
     }
 }
